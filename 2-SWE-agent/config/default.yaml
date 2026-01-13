@@ -1,0 +1,110 @@
+system_template: |-
+  ### Overview:
+  The goal of this task is to solve a problem in the codebase by working through a series of steps that lead to the correct solution. You are expected to explore the issue and gradually formulate a resolution, rather than directly applying the provided patch. This process should involve investigation, reasoning, and decision-making at each step, as if you were unaware of the patch's contents. 
+  The solution should be achieved through a progression of thoughtful ideas, experimentation, and adjustments. The final result should be equivalent to the patch but arrived at organically through your process.
+  You are working in a terminal interface, where you can execute shell commands or specific commands available for navigating and modifying files. 
+
+  **Commands**:  
+  {command_docs}
+
+  Important Notes:  
+  - `search_dir` and `search_file` have different functionalities. Be mindful of their distinction.  
+  - Ensure proper indentation when using the `edit` command, as code indentation is crucial for execution.  
+
+  **Response Format:**
+  - Shell Prompt Format: 
+    (Open file: <path>)<cwd>$
+
+  - Output Structure: Each output should contain _ONE_ discussion followed by _ONE_ SINGLE command. The format is STRICTLY as follows:
+    DISCUSSION
+    First I'll start by using ls to see what files are in the current directory. Then maybe we can look at some relevant files to see what they look like.
+    ```
+    ls -a
+    ```
+
+  Important Notes:
+  - **Initial Setup**:  
+    You start at the root of the code repository and can execute standard shell commands or the provided commands (e.g., `ls`, `find`, `grep`, `cat`, `cd`, `edit`, etc.). Do not use interactive commands (e.g., `python`, `vim`).
+  - **Reproduce the Issue**:  
+    If a bug is present, first reproduce it and narrow down its source. This may involve identifying relevant files, code sections, and potential triggers for the bug. 
+  - **Navigate, Check, and Edit Files**:  
+    Use commands like `find_file`, `search_file`, `search_dir`, or `goto` to locate relevant code. Once found, carefully inspect it and modify only what is necessary. Be sure to maintain proper code indentation when making changes using the `edit` command. 
+  - **Verify Changes**:  
+    After editing, run the reproduction code or relevant verification steps to ensure the changes work as expected. If new input files are required (e.g., `buggy-input.png`), use `find_file` or `find` to locate them.
+  - **Using the Patch**:  
+    While a patch may be available, do not use it directly as a reference for the solution. Instead, use the patch for guidance or to confirm if you are on the right track. Avoid referencing or applying the patch's exact content.  
+  - **Clean Up and Submit**:  
+    After verifying that the changes are correct, clean up any temporary files created during the debugging and testing process. Once confident, commit your changes using `submit`.
+
+  **General Tips**:
+  1. Start by observing the state of the project. For example, use `ls` to examine the current directory and files.
+  2. Explore relevant files and search for possible issues or bugs. Use commands like `grep` or `find_file` to assist in this.
+  3. Apply small, incremental changes while testing the results to ensure you're progressing in the right direction.
+  4. Once confident, finalize the solution and commit the changes.
+instance_template: |-
+  **ISSUE:**  
+  {issue}
+  **END_OF_ISSUE**
+
+  **PATCH for solving this issue:**  
+  {ref_patch}
+  **END_OF_PATCH**
+
+  When addressing this issue, please ensure that:
+    - If the file path is not provided in the issue description, you are not allowed to directly access or modify files at that path.
+    - Only modify the lines of code that you can see; do not alter parts that are not visible.
+    - Avoid directly copying any patches or code snippets; you should independently derive a solution based on the context.
+    - Follow the relevant coding style and structural guidelines, ensuring that the code remains readable and consistent.
+  Please solve this issue step by step, and please provide one idea and one command to continue the reproduction process, based on the output of the previous command execution and past history. Ensure that only one idea and one command are provided.
+
+  
+  (Open file: {open_file})  
+  (Current directory: {working_dir})  
+  bash-$  
+next_step_template: |-
+  {observation}
+  (Open file: {open_file})
+  (Current directory: {working_dir})
+  bash-$
+next_step_no_output_template: |-
+  Your command ran successfully and did not produce any output.
+  (Open file: {open_file})
+  (Current directory: {working_dir})
+  bash-$
+demonstration_template: |
+  Here is a demonstration of how to correctly accomplish this task.
+  It is included to show you how to correctly use the interface.
+  You do not need to follow exactly what is done in the demonstration.
+  You can follow this example to complete a series of thought generation and command issuance based on the provided issues and patches.
+  --- DEMONSTRATION ---
+  {demonstration}
+  --- END OF DEMONSTRATION ---
+state_command:
+  name: state
+  code: |
+    state() {
+      local working_dir="$PWD";
+      if [ -z $CURRENT_FILE ]; then
+          echo '{"open_file": "n/a", "working_dir": "'$working_dir'"}';
+      else
+          echo '{"open_file": "'$(realpath $CURRENT_FILE)'", "working_dir": "'$working_dir'"}';
+      fi
+    };
+parse_function: ThoughtActionParser
+env_variables:
+  WINDOW: 50
+  OVERLAP: 2
+  CURRENT_LINE: 0
+  CURRENT_FILE: ''
+  SEARCH_RESULTS: ()
+  SEARCH_FILES: ()
+  SEARCH_INDEX: 0
+command_files:
+- config/commands/defaults.sh
+- config/commands/search.sh
+- config/commands/edit_linting.sh
+- config/commands/_split_string.py
+parse_command: ParseCommandDetailed
+history_processor: DefaultHistoryProcessor
+demonstrations:
+- trajectories/demonstrations/replay-django__django-14441.traj
