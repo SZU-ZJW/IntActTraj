@@ -87,6 +87,31 @@ python 1-crawl_from_github/all_process_ing.py \
 - 测试环境配置
 - 目标代码仓库准备（与阶段一一致）
 
+### 2.2 准备代码库压缩包（与实例命名规则）
+
+在本流程中，我们对 `2-SWE-agent/sweagent/environment/swe_env.py` 做过定制：为了加速回放，代码在容器中不直接从 GitHub clone，而是从宿主机拷贝预先打好的仓库压缩包。
+
+约定规则：
+
+- 对于一个实例，其 `repo` 字段形如：`owner/repo_name`  
+  则在回放时对应的本地目录名为：`owner__repo_name`
+- `swe_env.py` 会在宿主机路径：
+  - `/home/zjw/SWE-Bench/repo/{owner__repo_name}.tar.gz`
+  中查找压缩包，并通过 `docker cp` 拷贝进容器，然后在容器根目录解压为 `/{owner__repo_name}`。
+
+也就是说，你需要为每个目标仓库准备一个同名压缩包：
+
+- 实例 `django__django-10914`（`repo = "django/django"`）→ `repo_name = "django__django"`  
+- 需要在宿主机创建：
+  - `/home/zjw/SWE-Bench/repo/django__django.tar.gz`
+
+如果你在自己的环境中使用不同的路径，请同步修改：
+
+- `2-SWE-agent/sweagent/environment/swe_env.py` 中的：
+  - `/home/zjw/SWE-Bench/repo/{repo_name}.tar.gz`
+
+改为你自己的仓库压缩包所在目录。
+
 ### 2.2 回放 / 演绎脚本
 
 本流程使用的脚本：`2-SWE-agent/scripts/run_replay.sh`
