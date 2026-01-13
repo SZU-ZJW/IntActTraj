@@ -1,0 +1,321 @@
+demonstrate: |
+  Here is a complete step-by-step solution to a problem, which you can use as a reference. You can understand how to solve an issue by learn it.
+    ***ISSUE***
+      Prevent get_image_dimensions() crash on nonexistent images.
+      Description
+      \t
+      When using the get_image_dimensions(), If a non existing file/path is passed, the function crashes
+    ***END_OF_ISSUE***
+    ***STEP_AND_EXECUTION_RESULTS-1***
+    STEP:
+      create reproduce_issue.py
+    EXECUTION_RESULTS
+      [File: /django__django/reproduce_issue.py (1 lines total)]
+      1:
+
+      (Open file: /django__django/reproduce_issue.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-2***
+    STEP:
+      edit 1:1
+      from django.core.files.images import get_image_dimensions
+
+      # Non-existent file path
+      file_path = 'nonexistent_image.jpg'
+      dimensions = get_image_dimensions(file_path)
+      print(f'Dimensions of the image: {dimensions}')
+      end_of_edit
+    EXECUTION_RESULTS
+      [File: /django__django/reproduce_issue.py (6 lines total)]
+      1:from django.core.files.images import get_image_dimensions
+      2:
+      3:# Non-existent file path
+      4:file_path = 'nonexistent_image.jpg'
+      5:dimensions = get_image_dimensions(file_path)
+      6:print(f'Dimensions of the image: {dimensions}')
+      File updated. Please review the changes and make sure they are correct (correct indentation, no duplicate lines, etc). Edit the file again if necessary.
+
+      (Open file: /django__django/reproduce_issue.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-3***
+    STEP:
+      python reproduce_issue.py
+    EXECUTION_RESULTS
+      Traceback (most recent call last):
+        File \"reproduce_issue.py\", line 5, in <module>
+          dimensions = get_image_dimensions(file_path)
+        File \"/django__django/django/core/files/images.py\", line 47, in get_image_dimensions
+          file = open(file_or_path, 'rb')
+      FileNotFoundError: [Errno 2] No such file or directory: 'nonexistent_image.jpg'
+
+      (Open file: /django__django/reproduce_issue.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-4***
+    STEP:
+      open django/core/files/images.py
+    EXECUTION_RESULTS
+      [File: /django__django/django/core/files/images.py (84 lines total)]
+      1:\"\"\"
+      2:Utility functions for handling images.
+      3:
+      4:Requires Pillow as you might imagine.
+      5:\"\"\"
+      6:import struct
+      7:import zlib
+      8:
+      9:from django.core.files import File
+      10:
+      11:
+      12:class ImageFile(File):
+      13:    \"\"\"
+      14:    A mixin for use alongside django.core.files.base.File, which provides
+      15:    additional features for dealing with images.
+      16:    \"\"\"
+      17:    @property
+      18:    def width(self):
+      19:        return self._get_image_dimensions()[0]
+      20:
+      21:    @property
+      22:    def height(self):
+      23:        return self._get_image_dimensions()[1]
+      24:
+      25:    def _get_image_dimensions(self):
+      26:        if not hasattr(self, '_dimensions_cache'):
+      27:            close = self.closed
+      28:            self.open()
+      29:            self._dimensions_cache = get_image_dimensions(self, close=close)
+      30:        return self._dimensions_cache
+      31:
+      32:
+      33:def get_image_dimensions(file_or_path, close=False):
+      34:    \"\"\"
+      35:    Return the (width, height) of an image, given an open file or a path.  Set
+      36:    'close' to True to close the file at the end if it is initially in an open
+      37:    state.
+      38:    \"\"\"
+      39:    from PIL import ImageFile as PillowImageFile
+      40:
+      41:    p = PillowImageFile.Parser()
+      42:    if hasattr(file_or_path, 'read'):
+      43:        file = file_or_path
+      44:        file_pos = file.tell()
+      45:        file.seek(0)
+      46:    else:
+      47:        file = open(file_or_path, 'rb')
+      48:        close = True
+      49:    try:
+      50:        # Most of the time Pillow only needs a small chunk to parse the image
+      (34 more lines below)
+
+      (Open file: /django__django/django/core/files/images.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-5***
+    STEP:
+      edit 7:7
+      import os
+      end_of_edit
+    EXECUTION_RESULTS
+      Your proposed edit has introduced new syntax error(s). Please understand the fixes and retry your edit commmand.
+
+      ERRORS:
+      - F821 undefined name 'zlib'
+
+      This is how your edit would have looked if applied
+      -------------------------------------------------
+      [File: /django__django/django/core/files/images.py (84 lines total)]
+      1:\"\"\"
+      2:Utility functions for handling images.
+      3:
+      4:Requires Pillow as you might imagine.
+      5:\"\"\"
+      6:import struct
+      7:import os
+      8:
+      9:from django.core.files import File
+      10:
+      11:
+      (73 more lines below)
+      -------------------------------------------------
+
+      This is the original code before your edit
+      -------------------------------------------------
+      [File: /django__django/django/core/files/images.py (84 lines total)]
+      (1 more lines above)
+      2:Utility functions for handling images.
+      3:
+      4:Requires Pillow as you might imagine.
+      5:\"\"\"
+      6:import struct
+      7:import zlib
+      8:
+      9:from django.core.files import File
+      10:
+      11:
+      12:class ImageFile(File):
+      (72 more lines below)
+      -------------------------------------------------
+      Your changes have NOT been applied. Please fix your edit command and try again.
+      You either need to 1) Specify the correct start/end line arguments or 2) Correct your edit code.
+      DO NOT re-run the same failed edit command. Running it again will lead to the same error.
+
+      (Open file: /django__django/django/core/files/images.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-6***
+    STEP:
+      edit 7:7
+      import os
+      import zlib
+      end_of_edit
+    EXECUTION_RESULTS
+      [File: /django__django/django/core/files/images.py (85 lines total)]
+      1:\"\"\"
+      2:Utility functions for handling images.
+      3:
+      4:Requires Pillow as you might imagine.
+      5:\"\"\"
+      6:import struct
+      7:import os
+      8:import zlib
+      9:
+      10:from django.core.files import File
+      11:
+      12:
+      13:class ImageFile(File):
+      14:    \"\"\"
+      15:    A mixin for use alongside django.core.files.base.File, which provides
+      16:    additional features for dealing with images.
+      17:    \"\"\"
+      18:    @property
+      19:    def width(self):
+      20:        return self._get_image_dimensions()[0]
+      21:
+      22:    @property
+      23:    def height(self):
+      24:        return self._get_image_dimensions()[1]
+      25:
+      26:    def _get_image_dimensions(self):
+      27:        if not hasattr(self, '_dimensions_cache'):
+      28:            close = self.closed
+      29:            self.open()
+      30:            self._dimensions_cache = get_image_dimensions(self, close=close)
+      31:        return self._dimensions_cache
+      32:
+      33:
+      34:def get_image_dimensions(file_or_path, close=False):
+      35:    \"\"\"
+      36:    Return the (width, height) of an image, given an open file or a path.  Set
+      37:    'close' to True to close the file at the end if it is initially in an open
+      38:    state.
+      39:    \"\"\"
+      40:    from PIL import ImageFile as PillowImageFile
+      41:
+      42:    p = PillowImageFile.Parser()
+      43:    if hasattr(file_or_path, 'read'):
+      44:        file = file_or_path
+      45:        file_pos = file.tell()
+      46:        file.seek(0)
+      47:    else:
+      48:        file = open(file_or_path, 'rb')
+      49:        close = True
+      50:    try:
+      (35 more lines below)
+      File updated. Please review the changes and make sure they are correct (correct indentation, no duplicate lines, etc). Edit the file again if necessary.
+
+      (Open file: /django__django/django/core/files/images.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-7***
+    STEP:
+      edit 40:40
+          from PIL import ImageFile as PillowImageFile
+
+          # Check if the file or path exists before proceeding
+          if not (hasattr(file_or_path, 'read') or os.path.exists(file_or_path)):
+              return (None, None)
+      end_of_edit
+    EXECUTION_RESULTS
+      [File: /django__django/django/core/files/images.py (89 lines total)]
+      1:\"\"\"
+      2:Utility functions for handling images.
+      3:
+      4:Requires Pillow as you might imagine.
+      5:\"\"\"
+      6:import struct
+      7:import os
+      8:import zlib
+      9:
+      10:from django.core.files import File
+      11:
+      12:
+      13:class ImageFile(File):
+      14:    \"\"\"
+      15:    A mixin for use alongside django.core.files.base.File, which provides
+      16:    additional features for dealing with images.
+      17:    \"\"\"
+      18:    @property
+      19:    def width(self):
+      20:        return self._get_image_dimensions()[0]
+      21:
+      22:    @property
+      23:    def height(self):
+      24:        return self._get_image_dimensions()[1]
+      25:
+      26:    def _get_image_dimensions(self):
+      27:        if not hasattr(self, '_dimensions_cache'):
+      28:            close = self.closed
+      29:            self.open()
+      30:            self._dimensions_cache = get_image_dimensions(self, close=close)
+      31:        return self._dimensions_cache
+      32:
+      33:
+      34:def get_image_dimensions(file_or_path, close=False):
+      35:    \"\"\"
+      36:    Return the (width, height) of an image, given an open file or a path.  Set
+      37:    'close' to True to close the file at the end if it is initially in an open
+      38:    state.
+      39:    \"\"\"
+      40:    from PIL import ImageFile as PillowImageFile
+      41:
+      42:    # Check if the file or path exists before proceeding
+      43:    if not (hasattr(file_or_path, 'read') or os.path.exists(file_or_path)):
+      44:        return (None, None)
+      45:
+      46:    p = PillowImageFile.Parser()
+      47:    if hasattr(file_or_path, 'read'):
+      48:        file = file_or_path
+      49:        file_pos = file.tell()
+      50:        file.seek(0)
+      (39 more lines below)
+      File updated. Please review the changes and make sure they are correct (correct indentation, no duplicate lines, etc). Edit the file again if necessary.
+
+      (Open file: /django__django/django/core/files/images.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-8***
+    STEP:
+      python reproduce_issue.py
+    EXECUTION_RESULTS
+      Dimensions of the image: (None, None)
+
+      (Open file: /django__django/django/core/files/images.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-9***
+    STEP:
+      rm reproduce_issue.py
+    EXECUTION_RESULTS
+      Your command ran successfully and did not produce any output.
+      (Open file: /django__django/django/core/files/images.py)
+      (Current directory: /django__django)
+      bash-$
+    ***STEP_AND_EXECUTION_RESULTS-10***
+    STEP:
+      submit
+    EXECUTION_RESULTS
+      None
+    ***END_OF_STEP_AND_EXECUTION_RESULTS***

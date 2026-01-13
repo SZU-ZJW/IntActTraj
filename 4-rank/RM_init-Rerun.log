@@ -1,0 +1,46 @@
+
+INFO - 🤖 SYSTEM PROMPT
+You are a senior problem-solving expert. Based on the input below, analyze and rank the predicted solutions. 
+Your task is to prioritize the predicted solutions based on the quality and applicability of the standard next step solution.
+
+IMPORTANT TIPS:
+  1. Problem Statement and Partial Solutions: Carefully read the provided problem description and existing partial solutions to fully understand the background of the issue.
+  2. Standard Next Step Solution: Refer to the provided standard next step solution.
+  3. Predicted Solutions: Based on the problem and partial solutions, multiple pre-generated predicted solutions will be provided next.
+  4. Rate Each Predicted Solutions: Rate for these predicted solutions and compare them with the standard next step solution, based on potential effectiveness.
+  5. **Do not miss any of the `Predicted Solutions`. Please rate each item in `Predicted Solutions`. **So, output an equal number of `Rate`. This is very important! Please verify.
+
+Please ensure your response is logical and well-organized.
+
+Rank Criteria: 
+  Potential Effectiveness[Rate each predicted solution]
+
+Your Response:
+  1. Rate: 1.0
+  2. Rate: 2.5
+  3. Rate: 8.5
+  4. Rate: 4.5
+
+Do not output anything else!!!
+
+
+INFO - 🍪 DEMONSTRATION 
+ 	 READY!
+(128)Processing:   0%|          | 0/7591 [00:00<?, ?line/s](128)Processing:   7%|▋         | 541/7591 [00:00<00:01, 5401.96line/s](128)Processing:  14%|█▍        | 1082/7591 [00:00<00:01, 5268.17line/s](128)Processing:  21%|██        | 1610/7591 [00:00<00:01, 4710.42line/s](128)Processing:  27%|██▋       | 2087/7591 [00:00<00:01, 4641.11line/s](128)Processing:  34%|███▎      | 2555/7591 [00:00<00:01, 4600.97line/s](128)Processing:  40%|███▉      | 3017/7591 [00:00<00:01, 4349.80line/s](128)Processing:  47%|████▋     | 3556/7591 [00:00<00:00, 4664.65line/s](128)Processing:  53%|█████▎    | 4042/7591 [00:00<00:00, 4719.75line/s](128)Processing:  60%|█████▉    | 4518/7591 [00:00<00:00, 4451.32line/s](128)Processing:  65%|██████▌   | 4969/7591 [00:01<00:00, 4464.93line/s](128)Processing:  71%|███████▏  | 5419/7591 [00:01<00:00, 4459.48line/s](128)Processing:  77%|███████▋  | 5871/7591 [00:01<00:00, 4467.07line/s](128)Processing:  83%|████████▎ | 6320/7591 [00:01<00:00, 4445.20line/s](128)Processing:  89%|████████▉ | 6766/7591 [00:01<00:00, 3831.73line/s](128)Processing:  94%|█████████▍| 7165/7591 [00:01<00:00, 3803.05line/s](128)Processing: 100%|█████████▉| 7566/7591 [00:01<00:00, 3858.83line/s](128)Processing: 100%|██████████| 7591/7591 [00:01<00:00, 4324.91line/s]
+
+INFO - 📜 Processing for 128:
+  Still have problem line: []
+
+
+(512)Processing:   0%|          | 0/7591 [00:00<?, ?line/s](512)Processing:   7%|▋         | 530/7591 [00:00<00:01, 5280.80line/s](512)Processing:  14%|█▍        | 1059/7591 [00:00<00:01, 5202.65line/s](512)Processing:  21%|██        | 1580/7591 [00:00<00:01, 4968.63line/s](512)Processing:  27%|██▋       | 2078/7591 [00:00<00:01, 4954.20line/s](512)Processing:  34%|███▍      | 2586/7591 [00:00<00:01, 4996.81line/s](512)Processing:  41%|████      | 3087/7591 [00:00<00:00, 4937.58line/s](512)Processing:  47%|████▋     | 3582/7591 [00:00<00:00, 4883.61line/s](512)Processing:  55%|█████▍    | 4151/7591 [00:00<00:00, 5092.83line/s](512)Processing:  62%|██████▏   | 4738/7591 [00:00<00:00, 5329.24line/s](512)Processing:  69%|██████▉   | 5272/7591 [00:01<00:00, 4939.34line/s](512)Processing:  77%|███████▋  | 5818/7591 [00:01<00:00, 5087.74line/s](512)Processing:  83%|████████▎ | 6332/7591 [00:01<00:00, 4681.11line/s](512)Processing:  90%|████████▉ | 6809/7591 [00:01<00:00, 4147.93line/s](512)Processing:  96%|█████████▌| 7275/7591 [00:01<00:00, 4278.49line/s](512)Processing: 100%|██████████| 7591/7591 [00:01<00:00, 4663.68line/s]
+
+INFO - 📜 Processing for 512:
+  Still have problem line: []
+
+
+(1024)Processing:   0%|          | 0/7591 [00:00<?, ?line/s](1024)Processing:   7%|▋         | 540/7591 [00:00<00:01, 5396.60line/s](1024)Processing:  14%|█▍        | 1080/7591 [00:00<00:01, 5269.30line/s](1024)Processing:  21%|██        | 1608/7591 [00:00<00:01, 4718.95line/s](1024)Processing:  29%|██▉       | 2191/7591 [00:00<00:01, 5123.95line/s](1024)Processing:  36%|███▌      | 2717/7591 [00:00<00:00, 5170.16line/s](1024)Processing:  43%|████▎     | 3239/7591 [00:00<00:00, 5002.47line/s](1024)Processing:  49%|████▉     | 3743/7591 [00:00<00:00, 4918.88line/s](1024)Processing:  57%|█████▋    | 4351/7591 [00:00<00:00, 5269.49line/s](1024)Processing:  64%|██████▍   | 4882/7591 [00:00<00:00, 5257.30line/s](1024)Processing:  71%|███████▏  | 5410/7591 [00:01<00:00, 4957.65line/s](1024)Processing:  78%|███████▊  | 5911/7591 [00:01<00:00, 4639.34line/s](1024)Processing:  84%|████████▍ | 6403/7591 [00:01<00:00, 4711.31line/s](1024)Processing:  91%|█████████ | 6879/7591 [00:01<00:00, 4204.04line/s](1024)Processing:  96%|█████████▋| 7312/7591 [00:01<00:00, 4165.23line/s](1024)Processing: 100%|██████████| 7591/7591 [00:01<00:00, 4686.48line/s]
+
+INFO - 📜 Processing for 1024:
+  Still have problem line: []
+
+

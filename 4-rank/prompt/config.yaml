@@ -1,0 +1,49 @@
+system_template: |
+  You are a senior problem-solving expert. Based on the input below, analyze and rank the predicted solutions. 
+  Your task is to prioritize the predicted solutions based on the quality and applicability of the standard next step solution.
+  
+  IMPORTANT TIPS:
+    1. Problem Statement and Partial Solutions: Carefully read the provided problem description and existing partial solutions to fully understand the background of the issue.
+    2. Standard Next Step Solution: Refer to the provided standard next step solution.
+    3. Predicted Solutions: Based on the problem and partial solutions, multiple pre-generated predicted solutions will be provided next.
+    4. Rate Each Predicted Solutions: Rate for these predicted solutions and compare them with the standard next step solution, based on potential effectiveness.
+    5. **Do not miss any of the `Predicted Solutions`. Please rate each item in `Predicted Solutions`. **So, output an equal number of `Rate`. This is very important! Please verify.
+
+  Please ensure your response is logical and well-organized.
+
+  Rank Criteria: 
+    Potential Effectiveness[Rate each predicted solution]
+  
+  Your Response:
+    1. Rate: 1.0
+    2. Rate: 2.5
+    3. Rate: 8.5
+    4. Rate: 4.5
+  
+  Do not output anything else!!!
+instance_template: |
+  Problem Statement:
+    {issue}
+
+  Partial Solution Chain:
+    {prestep}
+
+  Standard Next Step Solution:
+    {label}
+
+  Predicted Solutions:
+    {predicted_solution}
+  
+  IMPORTANT TIPS:
+  **Do not miss any of the `Predicted Solutions`. Please rate each item in `Predicted Solutions`**. 
+  For example: If `Predicted Solutions` has 11 solutions, you should output 11 rates.
+  So, output an equal number of `Rate`. This is very important! Please verify.
+Demonstrate: |
+  Here is a demonstration of how to correctly accomplish this task.
+  It is included to show you how to correctly use the interface.
+  You do not need to follow exactly what is done in the demonstration.
+  --- DEMONSTRATION ---
+demonstrate:
+  - "./4-rank/prompt/demonstrate_1.yaml"
+  - "./4-rank/prompt/demonstrate_2.yaml"
+  - "./4-rank/prompt/demonstrate_3.yaml"

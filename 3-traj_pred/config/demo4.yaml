@@ -1,0 +1,54 @@
+demonstrate: |
+  ### Example Guidance:
+  1. Add a print statement to the script to display the contents of a variable named `obj`.
+  2. First, you should create a script file to reproduce the issue.
+  3. Run the `reproduce.py` script to see the results.
+  4. Edit the `reproduce.py` file to modify its content, likely to better represent the issue at hand.
+  5. Submit your changes.
+
+  ---
+
+  ### Incorrect Response Example:
+  1. open test/lib/cgroup.py
+  2. edit 109:110
+            return obj
+     end_of_edit
+  3. create test/test.yml
+  4. pytest test.yml
+  5. submit
+
+  ---
+
+  ### Other Example:
+
+  1. Incorrect Output Example (Guidance for Next Step):
+      Edit the `setup.py` file to update the `dbt-extractor` dependency to version `0.4.1` and ensure it accepts all future patch releases.
+
+    Correct Output Example (Guidance for Next Step):
+      Edit the `setup.py` file to update the `dbt-extractor` dependency to version `0.4.1` and ensure it accepts all future patch releases.
+
+      ```console
+      edit 67:67
+      "dbt-extractor>=0.4.1,<0.5.0",
+      end_of_edit
+      ```
+  2. Incorrect Output Example (Guidance for Next Step):
+        Edit line 13 to change the agate pin to `six=1.0.0`.
+
+      Correct Output Example (Guidance for Next Step):
+        Edit line 13 to change the agate pin to `six=1.0.0`.
+
+        ```
+        edit 13:13
+        six=1.0.0
+        end_of_edit
+        ```
+  3. Incorrect Output Example (Guidance for Next Step):
+      Run the `reproduce_issue.py` script to check if the issue persists with the provided code.
+
+    Correct Output Example (Guidance for Next Step):
+      Run the `reproduce_issue.py` script to check if the issue persists with the provided code.
+
+      ```bash
+      python reproduce_issue.py
+      ```

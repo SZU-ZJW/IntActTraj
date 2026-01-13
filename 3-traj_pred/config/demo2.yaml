@@ -1,0 +1,40 @@
+demonstrate: |
+  We're currently solving the following issue within our repository. Here's the issue text and partial solution, the result after executing each command is given::
+    ***ISSUE***
+      Update example documentation block
+      ### Summary
+      The existing example documentation block is pointed to from the docs but hasn't been updated for a few years.
+      Update the example to match the current requirements at https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_documenting.html
+      
+      ### Issue Type
+      Documentation Report
+
+      ### Component Name
+      examples/DOCUMENTATION.yml
+
+      ### Ansible Version
+      ```console
+      $ ansible --version
+      2.16
+      ```
+
+      ### Configuration
+      ```console
+      # if using a version older than ansible-core 2.12 you should omit the '-t all'
+      $ ansible-config dump --only-changed -t all
+      none
+      ```
+
+      ### OS / Environment
+      none
+
+      ### Additional Information
+      none
+
+      ### Code of Conduct
+      - [X] I agree to follow the Ansible Code of Conduct
+
+    ***END_OF_ISSUE***
+  
+  RESPONSE:
+    Open examples/DOCUMENTATION.yml to check the documentation block.
