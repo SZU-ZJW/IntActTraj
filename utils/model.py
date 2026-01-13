@@ -1,7 +1,10 @@
 import os
 import random
 import sys
-sys.path.append('/home/zjw/zhengli/IntActTraj/')
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR))
 from utils.log import get_logger
 from vllm import LLM,SamplingParams
 from transformers import AutoTokenizer

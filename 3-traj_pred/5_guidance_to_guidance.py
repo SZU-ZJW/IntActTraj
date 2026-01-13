@@ -5,7 +5,10 @@ import argparse
 from openai import OpenAI
 import sys
 import yaml
-sys.path.append('/home/zjw/zhengli/IntActTraj/')
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR))
 from utils.log import get_logger
 
 logger = get_logger()

@@ -6,8 +6,11 @@ import argparse
 
 from typing import List
 import sys
+from pathlib import Path
 from tqdm import tqdm
-sys.path.append('/home/zjw/zhengli/IntActTraj/')
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR))
 from utils.model import MutilOfflinevLLMModel
 from utils.log import get_logger
 

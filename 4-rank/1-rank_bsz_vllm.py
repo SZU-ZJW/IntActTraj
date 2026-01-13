@@ -4,9 +4,12 @@ import yaml
 import json
 import sys
 import argparse
+from pathlib import Path
 from tqdm import tqdm
 from typing import List
-sys.path.append('/home/zjw/zhengli/IntActTraj/')
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR))
 from utils.log import get_logger
 from utils.model import MutilOfflinevLLMModel
 

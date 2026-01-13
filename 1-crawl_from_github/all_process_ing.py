@@ -5,8 +5,10 @@ import httpx
 from tqdm import tqdm
 import sys
 import argparse
+from pathlib import Path
 
-sys.path.append('/home/zjw/zhengli/IntActTraj/')
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR))
 from utils.utils import git_reset_hard, merge_state
 from utils.log import get_logger
 

@@ -109,7 +109,7 @@ Demonstrate: |
   You do not need to follow exactly what is done in the demonstration.
   --- DEMONSTRATION ---
 demonstrate:
-  - "/home/zjw/SWE-Bench/2_model_pred/process/prompts/demo1.yaml"
-  - "/home/zjw/SWE-Bench/2_model_pred/process/prompts/demo2.yaml"
-  - "/home/zjw/SWE-Bench/2_model_pred/process/prompts/demo3.yaml"
-  - "/home/zjw/SWE-Bench/2_model_pred/process/prompts/demo4.yaml"
+  - "./3-traj_pred/config/demo1.yaml"
+  - "./3-traj_pred/config/demo2.yaml"
+  - "./3-traj_pred/config/demo3.yaml"
+  - "./3-traj_pred/config/demo4.yaml"

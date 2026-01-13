@@ -50,8 +50,8 @@ TOKENS = [
 
 脚本使用 argparse，主要参数为：
 
-- `--repo-root`：本地克隆的代码仓库存放路径（默认：`/home/zjw/SWE-Bench/repo`）
-- `--save-root`：保存 jsonl 数据的根目录（默认：`/home/zjw/github`）
+- `--repo-root`：本地克隆的代码仓库存放路径（例如：`/path/to/SWE-Bench/repo`）
+- `--save-root`：保存 jsonl 数据的根目录（例如：`/path/to/github-data`）
 - `--repos`：要处理的仓库列表，格式为 `owner__repo`，例如 `django__django`
 
 ### 1.3 运行示例
@@ -60,14 +60,14 @@ TOKENS = [
 cd /path/to/IntActTraj
 
 python 1-crawl_from_github/all_process_ing.py \
-  --repo-root /home/zjw/SWE-Bench/repo \
-  --save-root /home/zjw/github \
+  --repo-root /path/to/SWE-Bench/repo \
+  --save-root /path/to/github-data \
   --repos django__django sqlfluff__sqlfluff
 ```
 
 输出：每个 repo 一个 jsonl，例如：
 
-- `/home/zjw/github/django__django/django__django.jsonl`
+- `/path/to/github-data/django__django/django__django.jsonl`
 
 这些文件包含后续阶段可用的 `instance_id`, `problem_statement`, `patch`, `test_patch`, `created_at` 等信息。
 
@@ -520,4 +520,3 @@ python 5-generate_datasets/2_generate.py
 - DPO 数据集：`5-generate_datasets/dpo_datasets.jsonl`
 
 你可以根据自己的实验需要，选择使用其中一个或多个数据集进行训练。若要扩展到更多仓库/任务，只需从阶段一重新开始，或替换阶段二后的输入数据路径即可。
-
